@@ -1349,7 +1349,7 @@ position = Vector2(1774.8, 164.2)
 position = Vector2(1798, 164.6)
 
 [node name="obstacle13" parent="." instance=ExtResource("9_a1otd")]
-position = Vector2(1830.8, 164.2)
+position = Vector2(1766, 40.2)
 
 [node name="obstacle18" parent="." instance=ExtResource("9_a1otd")]
 position = Vector2(1376.8, 165)

@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701529878
+::res://::1701530177
 barrel.png::CompressedTexture2D::8630713005157706293::1701026461::1701026823::1::::<><>::
 coins.gd::GDScript::-1::1701524169::0::1::::<>Area2D<>::
 coins.tscn::PackedScene::8636582375660492097::1701529823::0::1::::<><>::uid://ckqhqrvi4pikr::::res://misc/MonedaD.png<>res://coins.gd
