@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccs7q3fx013qv"]
+
+[ext_resource type="Script" path="res://speed_boost.gd" id="1_cmf5s"]
+[ext_resource type="Texture2D" uid="uid://b32yv4vre7cix" path="res://speedboostarrow.png" id="1_r1gea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76cai"]
+size = Vector2(40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p78ji"]
+atlas = ExtResource("1_r1gea")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwnnm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p78ji")
+}],
+"loop": true,
+"name": &"speed_boost",
+"speed": 5.0
+}]
+
+[node name="speed_boost" type="Area2D"]
+script = ExtResource("1_cmf5s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_76cai")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1000
+position = Vector2(3, 1)
+scale = Vector2(2.1875, 2.1875)
+sprite_frames = SubResource("SpriteFrames_jwnnm")
+animation = &"speed_boost"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

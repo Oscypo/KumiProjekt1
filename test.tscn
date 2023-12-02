@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c80r5p2uh4o5y"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_rskja"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_rskja")
+
+[node name="play" type="Button" parent="."]
+offset_left = 741.0
+offset_top = 332.0
+offset_right = 1133.0
+offset_bottom = 483.0
+text = "play"
+
+[node name="quit" type="Button" parent="."]
+offset_left = 748.0
+offset_top = 513.0
+offset_right = 1140.0
+offset_bottom = 667.0
+tooltip_text = "sraka
+"
+text = "Quit
+"
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

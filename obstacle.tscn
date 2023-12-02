@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://egdqc8tf71j0"]
+
+[ext_resource type="Script" path="res://obstacle.gd" id="1_kdmym"]
+[ext_resource type="Texture2D" uid="uid://du71t2cbtvgt6" path="res://barrel.png" id="2_4n2xc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dwdw6"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfd8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4n2xc")
+}],
+"loop": true,
+"name": &"barrel",
+"speed": 5.0
+}]
+
+[node name="obstacle" type="Area2D"]
+script = ExtResource("1_kdmym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_dwdw6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 4)
+scale = Vector2(0.530303, 0.530303)
+sprite_frames = SubResource("SpriteFrames_mfd8m")
+animation = &"barrel"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

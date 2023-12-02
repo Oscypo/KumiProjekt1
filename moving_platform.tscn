@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://dumug60tfgjgo"]
+
+[ext_resource type="Texture2D" uid="uid://bg887gmc26px2" path="res://Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_qya8o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3s8a"]
+size = Vector2(112, 16)
+
+[sub_resource type="Animation" id="Animation_aeabx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8fp7"]
+resource_name = "moving_platform_loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(107, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3s5o"]
+_data = {
+"RESET": SubResource("Animation_aeabx"),
+"moving_platform_loop": SubResource("Animation_a8fp7")
+}
+
+[node name="moving_platform_node" type="Node2D"]
+
+[node name="moving_platform" type="AnimatableBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform"]
+shape = SubResource("RectangleShape2D_w3s8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="moving_platform"]
+texture = ExtResource("1_qya8o")
+region_enabled = true
+region_rect = Rect2(320, 144, 112, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="moving_platform"]
+autoplay = "moving_platform_loop"
+libraries = {
+"": SubResource("AnimationLibrary_g3s5o")
+}

@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://dvbviq5liw4yn"]
+
+[ext_resource type="Texture2D" uid="uid://ckqhqrvi4pikr" path="res://misc/MonedaD.png" id="1_3idw6"]
+[ext_resource type="Script" path="res://coins.gd" id="1_fb0tx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu5s4"]
+size = Vector2(15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvvlu"]
+atlas = ExtResource("1_3idw6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly4vi"]
+atlas = ExtResource("1_3idw6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd84g"]
+atlas = ExtResource("1_3idw6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeeue"]
+atlas = ExtResource("1_3idw6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua3d4"]
+atlas = ExtResource("1_3idw6")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dveq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvvlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly4vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd84g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeeue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua3d4")
+}],
+"loop": true,
+"name": &"coins",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_k8r7w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4f1al"]
+resource_name = "coins"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3uwu7"]
+_data = {
+"RESET": SubResource("Animation_k8r7w"),
+"coins": SubResource("Animation_4f1al")
+}
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_fb0tx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_gu5s4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.78814e-07, -8.9407e-08)
+scale = Vector2(0.75, 0.875)
+sprite_frames = SubResource("SpriteFrames_3dveq")
+animation = &"coins"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "coins"
+libraries = {
+"": SubResource("AnimationLibrary_3uwu7")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
